@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.MainActivity">
 
+   <FrameLayout
+       android:layout_width="0dp"
+       android:layout_height="?attr/actionBarSize"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       />
+
    <androidx.fragment.app.FragmentContainerView
        android:id="@+id/fragmentContainerView"
        android:layout_width="0dp"
