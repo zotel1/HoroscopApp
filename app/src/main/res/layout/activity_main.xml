@@ -25,6 +25,7 @@
           android:textStyle="bold"
           android:textSize="30sp"
           />
+
    </FrameLayout>
 
    <androidx.fragment.app.FragmentContainerView
