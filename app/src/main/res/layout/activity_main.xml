@@ -24,6 +24,7 @@
           android:textColor="@color/secondary"
           android:textStyle="bold"
           android:textSize="30sp"
+          android:fontFamily="@font/dancing"
           />
 
    </FrameLayout>
