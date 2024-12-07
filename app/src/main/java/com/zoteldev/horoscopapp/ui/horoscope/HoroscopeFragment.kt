@@ -51,7 +51,7 @@ class HoroscopeFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 horoscopeViewModel.horoscope.collect{
                     // Podemos pintar lo que queremos que se vea
-
+                    horoscopeAdapter.updateList(it)
                 }
             }
         }
