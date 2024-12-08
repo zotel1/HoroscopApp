@@ -2,8 +2,9 @@ package com.zoteldev.horoscopapp.data.providers
 
 import com.zoteldev.horoscopapp.domain.model.HoroscopeInfo
 import com.zoteldev.horoscopapp.domain.model.HoroscopeInfo.*
+import javax.inject.Inject
 
-class HoroscopeProvider {
+class HoroscopeProvider @Inject constructor(){
     fun getHoroscopes():List<HoroscopeInfo>{
         return listOf(
             Aries, Taurus, Gemini,
