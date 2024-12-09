@@ -16,5 +16,7 @@ class HoroscopeViewHolder(view:View):RecyclerView.ViewHolder(view){
         binding.ivHoroscope.setImageResource(horoscopeInfo.img)
         binding.tvTitle.text = context.getString(horoscopeInfo.nane)
 
+        binding.parent.setOnClickListener { onItemSelected(horoscopeInfo) }
+
     }
 }
