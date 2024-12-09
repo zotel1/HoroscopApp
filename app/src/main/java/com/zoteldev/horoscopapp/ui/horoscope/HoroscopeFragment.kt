@@ -45,6 +45,7 @@ class HoroscopeFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 2)
             adapter = adapter
         }
+
     }
 
     private fun initUIState(){
