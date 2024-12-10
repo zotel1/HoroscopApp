@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+   // alias(libs.plugins.androidx.navigation.safe.args.kotlin)
     id("com.google.dagger.hilt.android") version "2.48.1" apply true
     id("kotlin-kapt") // Plugin necesario para Hilt
+    id("androidx.navigation.safeargs.kotlin") // Safe Args para generación de clases seguras
 }
 
 android {
@@ -60,4 +62,6 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler) // Para la generación de código
     implementation(libs.hilt.navigation.compose) // Opcional, si usas Jetpack Compose
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 }
