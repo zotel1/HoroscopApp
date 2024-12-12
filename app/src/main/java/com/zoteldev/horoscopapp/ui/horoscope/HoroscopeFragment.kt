@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zoteldev.horoscopapp.R
 import com.zoteldev.horoscopapp.databinding.FragmentHoroscopeBinding
+import com.zoteldev.horoscopapp.domain.model.HoroscopeInfo
+import com.zoteldev.horoscopapp.domain.model.HoroscopeInfo.*
+import com.zoteldev.horoscopapp.domain.model.HoroscopeModel
 import com.zoteldev.horoscopapp.ui.horoscope.adapter.HoroscopeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -40,12 +43,28 @@ class HoroscopeFragment : Fragment() {
         initUIState()
     }
 
-    private fun initList(){
+    private fun initList() {
         horoscopeAdapter = HoroscopeAdapter(onItemSelected = {
-            //            Toast.makeText(context, getString(it.nane),Toast.LENGTH_LONG).show()})
+
+            when (it) {
+
+                Aquarius -> HoroscopeModel.Aquarius
+                Aries -> HoroscopeModel.Aries
+                Cancer -> HoroscopeModel.Cancer
+                Capricorn -> HoroscopeModel.Capricorn
+                Gemini -> HoroscopeModel.Gemini
+                Leo -> HoroscopeModel.Leo
+                Libra -> HoroscopeModel.Libra
+                Pisces -> HoroscopeModel.Pisces
+                Sagittarius -> HoroscopeModel.Sagittarius
+                Scorpio -> HoroscopeModel.Scorpio
+                Taurus -> HoroscopeModel.Taurus
+                Virgo -> HoroscopeModel.Virgo
+            }
 
             findNavController().navigate(
-            HoroscopeFragmentDirections.actionHoroscopeFragmentToHoroscopeDetailActivity())
+                HoroscopeFragmentDirections.actionHoroscopeFragmentToHoroscopeDetailActivity()
+            )
         })
 
         binding.rvHoroscope.apply {
@@ -55,10 +74,10 @@ class HoroscopeFragment : Fragment() {
 
     }
 
-    private fun initUIState(){
+    private fun initUIState() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                horoscopeViewModel.horoscope.collect{
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                horoscopeViewModel.horoscope.collect {
                     // Podemos pintar lo que queremos que se vea
                     horoscopeAdapter.updateList(it)
                 }
