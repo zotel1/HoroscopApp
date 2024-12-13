@@ -65,7 +65,7 @@ class HoroscopeFragment : Fragment() {
 
 
             findNavController().navigate(
-                HoroscopeFragmentDirections.actionHoroscopeFragmentToHoroscopeDetailActivity()
+                HoroscopeFragmentDirections.actionHoroscopeFragmentToHoroscopeDetailActivity(type)
             )
         })
 

@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.navArgs
 import com.zoteldev.horoscopapp.R
 import com.zoteldev.horoscopapp.databinding.ActivityHoroscopeDetailBinding
 import com.zoteldev.horoscopapp.databinding.ActivityMainBinding
@@ -18,9 +19,12 @@ class horoscopeDetailActivity : AppCompatActivity() {
     // Esta es la segunda forma de definir el by, la primera esta en el HoroscopeFragment
     private val horoscopeDetailViewModel:HoroscopeDetailViewModel by viewModels()
 
+    private val args:HoroscopeDetailActivityArgs by navArgs()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHoroscopeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        args.type
     }
 }
