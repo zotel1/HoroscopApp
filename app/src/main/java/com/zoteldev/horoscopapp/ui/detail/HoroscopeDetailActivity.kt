@@ -1,19 +1,14 @@
 package com.zoteldev.horoscopapp.ui.detail
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.navArgs
-import com.zoteldev.horoscopapp.R
 import com.zoteldev.horoscopapp.databinding.ActivityHoroscopeDetailBinding
-import com.zoteldev.horoscopapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class horoscopeDetailActivity : AppCompatActivity() {
+class HoroscopeDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHoroscopeDetailBinding
     // Esta es la segunda forma de definir el by, la primera esta en el HoroscopeFragment

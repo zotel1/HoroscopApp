@@ -14,7 +14,7 @@
         android:theme="@style/Theme.HoroscopApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.detail.horoscopeDetailActivity"
+            android:name=".ui.detail.HoroscopeDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.MainActivity"
