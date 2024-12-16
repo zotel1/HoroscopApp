@@ -38,18 +38,26 @@ class HoroscopeDetailActivity : AppCompatActivity() {
                 horoscopeDetailViewModel.state.collect{
                     when(it){
                         HoroscopeDetailState.Loading -> {
-                            binding.pb.isVisible = true
+                            loadingState()
                         }
-                        is HoroscopeDetailState.Error -> {
-
-                        }
-
-
-                        }
+                        is HoroscopeDetailState.Error -> errorState()
+                        is HoroscopeDetailState.Success -> successState()
 
                     }
                 }
             }
         }
+    }
+
+    private fun loadingState(){
+        binding.pb.isVisible = true
+    }
+
+    private fun errorState(){
+
+    }
+
+    private fun successState(){
+
     }
 }
