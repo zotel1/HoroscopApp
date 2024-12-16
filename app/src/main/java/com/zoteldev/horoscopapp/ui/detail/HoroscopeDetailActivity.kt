@@ -3,9 +3,13 @@ package com.zoteldev.horoscopapp.ui.detail
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.navArgs
 import com.zoteldev.horoscopapp.databinding.ActivityHoroscopeDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HoroscopeDetailActivity : AppCompatActivity() {
@@ -20,6 +24,20 @@ class HoroscopeDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHoroscopeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        args.type
+        initUI()
+    }
+
+    private fun initUI(){
+        initUIState()
+    }
+
+    private fun initUIState(){
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                horoscopeDetailViewModel.state.collect{
+
+                }
+            }
+        }
     }
 }
