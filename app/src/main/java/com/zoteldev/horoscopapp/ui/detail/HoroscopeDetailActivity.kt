@@ -3,6 +3,7 @@ package com.zoteldev.horoscopapp.ui.detail
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -35,7 +36,18 @@ class HoroscopeDetailActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 horoscopeDetailViewModel.state.collect{
+                    when(it){
+                        HoroscopeDetailState.Loading -> {
+                            binding.pb.isVisible = true
+                        }
+                        is HoroscopeDetailState.Error -> {
 
+                        }
+
+
+                        }
+
+                    }
                 }
             }
         }
