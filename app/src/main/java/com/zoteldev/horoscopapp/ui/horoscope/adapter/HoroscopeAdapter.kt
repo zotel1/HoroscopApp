@@ -7,7 +7,7 @@ import com.zoteldev.horoscopapp.R
 import com.zoteldev.horoscopapp.domain.model.HoroscopeInfo
 
 class HoroscopeAdapter(private var horoscopeList:List<HoroscopeInfo> = emptyList(),
-    private val onItemSelected:(HoroscopeInfo) -> Unit):
+                       private val onItemSelected:(HoroscopeInfo) -> Unit):
     RecyclerView.Adapter<HoroscopeViewHolder>() {
 
         fun updateList(list: List<HoroscopeInfo>){

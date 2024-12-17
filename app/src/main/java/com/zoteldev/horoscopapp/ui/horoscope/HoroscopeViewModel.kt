@@ -3,7 +3,6 @@ package com.zoteldev.horoscopapp.ui.horoscope
 import androidx.lifecycle.ViewModel
 import com.zoteldev.horoscopapp.data.providers.HoroscopeProvider
 import com.zoteldev.horoscopapp.domain.model.HoroscopeInfo
-import com.zoteldev.horoscopapp.domain.model.HoroscopeInfo.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
