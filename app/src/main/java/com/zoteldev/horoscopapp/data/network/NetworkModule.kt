@@ -1,5 +1,7 @@
 package com.zoteldev.horoscopapp.data.network
 
+import com.zoteldev.horoscopapp.data.RepositoryImpl
+import com.zoteldev.horoscopapp.domain.Repository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,5 +24,10 @@ object NetworkModule {
     @Provides
     fun horoscopeApiService(retrofit: Retrofit): HoroscopeApiService{
         return retrofit.create(HoroscopeApiService::class.java)
+    }
+
+    @Provides
+    fun provideRepository(apiService: HoroscopeApiService): Repository{
+        return RepositoryImpl()
     }
 }
