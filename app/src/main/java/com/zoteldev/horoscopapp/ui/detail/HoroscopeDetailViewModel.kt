@@ -3,6 +3,7 @@ package com.zoteldev.horoscopapp.ui.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zoteldev.horoscopapp.data.providers.HoroscopeProvider
+import com.zoteldev.horoscopapp.domain.model.HoroscopeModel
 import com.zoteldev.horoscopapp.domain.usecase.GetPredictionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,11 @@ class HoroscopeDetailViewModel @Inject constructor(private val getPredictionUseC
 
     val state: StateFlow<HoroscopeDetailState> = _state
 
-    fun getHoroscope(sign:String){
+    lateinit var horoscope:HoroscopeModel
+
+    fun getHoroscope(sign: HoroscopeModel){
+        horoscope = sign
+
         viewModelScope.launch {
             _state.value = HoroscopeDetailState.Loading // Hilo principal
             val result = withContext(Dispatchers.IO) { getPredictionUseCase(sign) } // Hilo secundario

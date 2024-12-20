@@ -26,7 +26,7 @@ class HoroscopeDetailActivity : AppCompatActivity() {
         binding = ActivityHoroscopeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initUI()
-        horoscopeDetailViewModel.getHoroscope(args.type.name)
+        horoscopeDetailViewModel.getHoroscope(args.type)
     }
 
     private fun initUI(){
