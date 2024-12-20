@@ -28,10 +28,10 @@ class HoroscopeDetailViewModel @Inject constructor(private val getPredictionUseC
 
         viewModelScope.launch {
             _state.value = HoroscopeDetailState.Loading // Hilo principal
-            val result = withContext(Dispatchers.IO) { getPredictionUseCase(sign) } // Hilo secundario
+            val result = withContext(Dispatchers.IO) { getPredictionUseCase(sign.name) } // Hilo secundario
 
             if (result!=null){
-                _state.value = HoroscopeDetailState.Success(result.horoscope, result.sign)
+                _state.value = HoroscopeDetailState.Success(result.horoscope, result.sign, horoscope)
             } else {
                 _state.value = HoroscopeDetailState.Error("Ha ocurrido un error, ontentalo de nuevo mas tarde.")
             }
