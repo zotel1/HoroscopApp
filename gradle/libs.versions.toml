@@ -9,12 +9,12 @@ appcompat = "1.7.0"
 material = "1.12.0"
 activity = "1.9.3"
 constraintlayout = "2.2.0"
-nav = "2.8.4" # Última versión estable
-hilt = "2.48.1" # Última versión estable de Dagger Hilt
-hilt-androidx = "1.1.0-beta01" # Versión para Hilt en Jetpack
-androidx-navigation = "2.7.3" # Usa la versión más reciente compatible
+nav = "2.8.5" # Última versión estable
+hilt = "2.54" # Última versión estable de Dagger Hilt
+hilt-androidx = "1.2.0" # Versión para Hilt en Jetpack
+androidx-navigation = "2.8.5" # Usa la versión más reciente compatible
 retrofit = "2.11.0"
-okhttp = "4.3.1" # Agrega la versión de OkHttp aquí.
+okhttp = "4.12.0" # Agrega la versión de OkHttp aquí.
 
 
 [libraries]

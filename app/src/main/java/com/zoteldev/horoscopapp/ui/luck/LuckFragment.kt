@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.DecelerateInterpolator
@@ -77,6 +78,8 @@ class LuckFragment : Fragment() {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
+                binding.reverse.isVisible = false
+                showPremonitionView()
             }
 
             override fun onAnimationRepeat(animation: Animation?) {
@@ -85,6 +88,26 @@ class LuckFragment : Fragment() {
         })
 
         binding.reverse.startAnimation(growAnimation)
+    }
+
+    private fun showPremonitionView() {
+        val disappearAnimation = AlphaAnimation(1.0f, 0.0f)
+        disappearAnimation.duration = 200
+
+        disappearAnimation.setAnimationListener(object : Animation.AnimationListener{
+            override fun onAnimationStart(p0: Animation?) {}
+
+            override fun onAnimationEnd(p0: Animation?) {
+                binding.preview.isVisible = false
+                binding.prediction.isVisible = true
+            }
+
+            override fun onAnimationRepeat(p0: Animation?) {
+            }
+
+        })
+
+        binding.preview.startAnimation(disappearAnimation)
     }
 
     override fun onCreateView(
