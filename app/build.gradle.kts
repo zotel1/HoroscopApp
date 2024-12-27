@@ -1,10 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-   // alias(libs.plugins.androidx.navigation.safe.args.kotlin)
-    id("com.google.dagger.hilt.android") version "2.48.1" apply true
-    id("kotlin-kapt") // Plugin necesario para Hilt
-    id("androidx.navigation.safeargs.kotlin") // Safe Args para generación de clases seguras
+    id("com.android.application") version "8.0.0" apply false
+    id("org.jetbrains.kotlin.android") version "1.8.0" apply false
+    id("com.google.dagger.hilt.android") version "2.48" apply false
+    id("androidx.navigation.safeargs.kotlin") version "2.7.1" apply false
 }
 
 android {
@@ -17,7 +15,6 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,60 +28,63 @@ android {
             )
 
             resValue("string", "zotelname", "HoroscApp")
-
             buildConfigField("String", "BASE_URL", "\"https://newastro.vercel.app/\"")
         }
 
-        getByName("debug"){
+        getByName("debug") {
             isDebuggable = true
             resValue("string", "zotelname", "[DEBUG] HoroscApp")
             buildConfigField("String", "BASE_URL", "\"https://newastro-debug.vercel.app/\"")
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         viewBinding = true
         buildConfig = true
     }
+
     kotlin {
-        jvmToolchain(8)
+        jvmToolchain(11)
+    }
+
+    // Configuración para usar Java 17
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17) // Usa Java 17
+        }
     }
 }
 
 dependencies {
-
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.espresso.core)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler) // Para la generación de código
-    implementation(libs.hilt.navigation.compose) // Opcional, si usas Jetpack Compose
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
+    kapt(libs.hilt.compiler)
 
-    // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
-
     implementation(libs.okhttp.logging.interceptor)
 
-    // Camera x
     implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
