@@ -16,72 +16,81 @@ import androidx.core.content.PermissionChecker
 import com.zoteldev.horoscopapp.databinding.FragmentPalmistryBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+
+
 @AndroidEntryPoint
 class PalmistryFragment : Fragment() {
 
-    companion object{
+    companion object {
         private const val CAMERA_PERMISSION = android.Manifest.permission.CAMERA
     }
 
-    private var _binding : FragmentPalmistryBinding? = null
+    private var _binding: FragmentPalmistryBinding? = null
     private val binding get() = _binding!!
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
-    ){isGranted ->
-        if (isGranted){
-            //StartCamera
+    ) { isGranted ->
+        if (isGranted) {
             startCamera()
-        }else{
-            Toast.makeText(requireContext(), "Acepta los permisos para poder disfrutar de una experiencia mágica", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Acepta los permisos para poder disfrutar de una experiencia mágica",
+                Toast.LENGTH_LONG
+            ).show()
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentPalmistryBinding.inflate(layoutInflater, container, false)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (checkCameraPermission()){
-            // Tiene permisos aceptados
+        if (checkCameraPermission()) {
             startCamera()
         } else {
             requestPermissionLauncher.launch(CAMERA_PERMISSION)
         }
     }
-    private fun checkCameraPermission(): Boolean{
-        return PermissionChecker.checkSelfPermission(
-            requireContext(), CAMERA_PERMISSION
-        ) == PermissionChecker.PERMISSION_GRANTED
-    }
 
-    private fun startCamera(){
+    private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
+
         cameraProviderFuture.addListener({
-            val cameraProvider:ProcessCameraProvider = cameraProviderFuture.get()
+            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
             val preview = Preview.Builder()
                 .build()
-                .also{
+                .also {
                     it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
                 }
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
-            try {
+            try{
                 cameraProvider.unbindAll()
 
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview)
-            } catch (e:Exception){
-                Log.e("zotel", "Algo salio mal ${e.message}")
+            }catch (e:Exception){
+                Log.e("aris", "Algo petó ${e.message}")
             }
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
+    private fun checkCameraPermission(): Boolean {
+        return PermissionChecker.checkSelfPermission(
+            requireContext(), CAMERA_PERMISSION
+        ) == PermissionChecker.PERMISSION_GRANTED
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentPalmistryBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
