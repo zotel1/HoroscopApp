@@ -28,6 +28,7 @@ class PalmistryFragment : Fragment() {
     ){isGranted ->
         if (isGranted){
             //StartCamera
+            startCamera()
         }else{
             Toast.makeText(requireContext(), "Acepta los permisos para poder disfrutar de una experiencia mágica", Toast.LENGTH_LONG).show()
         }
@@ -46,6 +47,7 @@ class PalmistryFragment : Fragment() {
 
         if (checkCameraPermission()){
             // Tiene permisos aceptados
+            startCamera()
         } else {
             requestPermissionLauncher.launch(CAMERA_PERMISSION)
         }
