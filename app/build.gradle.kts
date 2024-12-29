@@ -1,8 +1,7 @@
 plugins {
-    id("com.android.application") version "8.0.0" apply false
-    id("org.jetbrains.kotlin.android") version "1.8.0" apply false
-    id("com.google.dagger.hilt.android") version "2.48" apply false
-    id("androidx.navigation.safeargs.kotlin") version "2.7.1" apply false
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -39,8 +38,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
@@ -51,6 +50,8 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    ndkVersion = "28.0.12674087 rc2"
+    buildToolsVersion = "30.0.3"
 
     kotlin {
         jvmToolchain(11)
